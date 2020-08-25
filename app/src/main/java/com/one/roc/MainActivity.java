@@ -1,16 +1,12 @@
 package com.one.roc;
 
+import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-
-import java.io.IOException;
+import android.os.CountDownTimer;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import okhttp3.Cache;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,21 +16,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        builder.cache(new Cache(getCacheDir(), 25 * 1024 * 1024));
-        OkHttpClient client = builder.build();
-        Request request = new Request.Builder().url("http://github.com").build();
-        client.newCall(request).enqueue(new Callback() {
+        ImageView imageView = findViewById(R.id.iv);
+        String pkg = "com.kohler.photo";//your package name
+        Drawable icon = null;
+        try {
+            icon = this.getPackageManager().getApplicationIcon(pkg);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        imageView.setImageDrawable(icon);
+
+new CountDownTimer(10*1000,1000) {
             @Override
-            public void onFailure(Call call, IOException e) {
+            public void onTick(long millisUntilFinished) {
 
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
-
+            public void onFinish() {
+                android.os.Process.killProcess(android.os.Process.myPid());
             }
-        });
+        }.start();
 
 
     }

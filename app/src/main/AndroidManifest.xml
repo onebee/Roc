@@ -27,6 +27,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".interrupt.CancelEventActivity" />
+        <activity android:name=".interrupt.InterceptActivity" />
     </application>
 
 </manifest>
