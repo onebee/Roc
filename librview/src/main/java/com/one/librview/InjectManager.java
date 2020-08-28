@@ -21,11 +21,11 @@ import androidx.appcompat.app.AppCompatActivity;
 public class InjectManager {
 
     public static void inject(AppCompatActivity act) {
-        // 布局的注入
+
         injectLayout(act);
-        // 控件的注入
+
         injectViews(act);
-        // 事件的注入
+
         injectEvents(act);
     }
 
@@ -103,6 +103,7 @@ public class InjectManager {
                     // 设置访问权限private
                     field.setAccessible(true);
                     field.set(act, view);
+                    System.out.println("");
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 } catch (InvocationTargetException e) {

@@ -22,11 +22,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
  */
 
 @ContentView(R.layout.rview_act)
-public class RViewAct extends BaseActivity {
+public class RViewActivity extends BaseActivity {
 
 
     @InjectView(R.id.recyclerView)
-    private RView recyclerView;
+    private RView mRv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +53,10 @@ public class RViewAct extends BaseActivity {
     private void initRView() {
         LinearLayoutManager manager = new LinearLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(manager);
+        mRv.setLayoutManager(manager);
         SampleAdapter adapter = new SampleAdapter(initDatas());
-        recyclerView.setRViewAdapter(adapter);
-        recyclerView.setAdapter(adapter);
+        mRv.setRViewAdapter(adapter);
+        mRv.setAdapter(adapter);
         InjectManager.injectEvents(this);
     }
 
