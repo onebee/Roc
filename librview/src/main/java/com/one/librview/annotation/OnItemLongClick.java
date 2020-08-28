@@ -10,8 +10,8 @@ import java.lang.annotation.Target;
 /**
  * @author diaokaibin@gmail.com on 2020/8/28.
  */
-@Target(ElementType.METHOD) // 该注解作用于在方法
-@Retention(RetentionPolicy.RUNTIME) // jvm运行时通过反射获取到该注解的内容
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
 @EventBase(listenerSetter = "setOnItemLongClickListener", listenerType = RView.OnItemLongClickListener.class, callBackListener = "onItemLongClick")
 public @interface OnItemLongClick {
 

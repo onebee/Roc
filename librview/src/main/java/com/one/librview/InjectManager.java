@@ -1,6 +1,5 @@
 package com.one.librview;
 
-import android.app.Activity;
 import android.view.View;
 
 import com.one.librview.annotation.ContentView;
@@ -13,6 +12,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
+import androidx.appcompat.app.AppCompatActivity;
 
 
 /**
@@ -20,7 +20,7 @@ import java.lang.reflect.Proxy;
  */
 public class InjectManager {
 
-    public static void inject(Activity act) {
+    public static void inject(AppCompatActivity act) {
         // 布局的注入
         injectLayout(act);
         // 控件的注入
@@ -29,8 +29,8 @@ public class InjectManager {
         injectEvents(act);
     }
 
-    public static void injectEvents(Activity act) {
-        Class<? extends Activity> clazz = act.getClass();
+    public static void injectEvents(AppCompatActivity act) {
+        Class<? extends AppCompatActivity> clazz = act.getClass();
         // 获取类的所有方法
         Method[] methods = clazz.getDeclaredMethods();
         for (Method method : methods) {
@@ -84,8 +84,8 @@ public class InjectManager {
         }
     }
 
-    private static void injectViews(Activity act) {
-        Class<? extends Activity> clazz = act.getClass();
+    private static void injectViews(AppCompatActivity act) {
+        Class<? extends AppCompatActivity> clazz = act.getClass();
         // 获取类的所有属性
         Field[] fields = clazz.getDeclaredFields();
         // 循环每个属性
@@ -98,9 +98,11 @@ public class InjectManager {
                 // 获取findViewById方法，并执行
                 try {
                     Method method = clazz.getMethod("findViewById", int.class);
+
+                    Object view = method.invoke(act, viewId);
                     // 设置访问权限private
                     field.setAccessible(true);
-                    field.set(act, method.invoke(act, viewId));
+                    field.set(act, view);
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 } catch (InvocationTargetException e) {
@@ -112,8 +114,8 @@ public class InjectManager {
         }
     }
 
-    private static void injectLayout(Activity act) {
-        Class<? extends Activity> clazz = act.getClass();
+    private static void injectLayout(AppCompatActivity act) {
+        Class<? extends AppCompatActivity> clazz = act.getClass();
         // 获取类的注解
         ContentView contentView = clazz.getAnnotation(ContentView.class);
         if (contentView != null) {

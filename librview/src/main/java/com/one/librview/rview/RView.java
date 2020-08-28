@@ -28,22 +28,19 @@ public class RView extends RecyclerView {
         super(context, attrs, defStyle);
     }
 
-    /**
-     * @param adapter 设置适配器
-     */
+
     public void setRViewAdapter(RViewAdapter adapter) {
         this.adapter = adapter;
     }
 
-    // 条目点击监听接口
+
     public interface OnItemClickListener<T> {
-        // 点击事件监听
+
         void onItemClick(View view, T entity, int position);
     }
 
-    // 条目长按监听接口
     public interface OnItemLongClickListener<T> {
-        // 长按事件监听
+
         boolean onItemLongClick(View view, T entity, int position);
     }
 

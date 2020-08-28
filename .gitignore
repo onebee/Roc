@@ -17,5 +17,5 @@ gradle.properties/
 gradle/
 gradlew.bat/
 *.iml
-
+.idea/
 schemas/

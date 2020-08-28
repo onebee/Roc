@@ -29,6 +29,7 @@
         </activity>
         <activity android:name=".interrupt.CancelEventActivity" />
         <activity android:name=".interrupt.InterceptActivity" />
+        <activity android:name=".ioc1.RViewAct"/>
     </application>
 
 </manifest>

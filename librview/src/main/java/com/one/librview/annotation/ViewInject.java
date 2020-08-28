@@ -8,9 +8,8 @@ import java.lang.annotation.Target;
 /**
  * @author diaokaibin@gmail.com on 2020/8/28.
  */
-@Target(ElementType.FIELD) // 该注解作用于属性、枚举的常量
-@Retention(RetentionPolicy.RUNTIME) // jvm运行时通过反射获取到该注解的内容
+@Target(ElementType.FIELD)
+@Retention(RetentionPolicy.RUNTIME)
 public @interface ViewInject {
-
     int value();
 }

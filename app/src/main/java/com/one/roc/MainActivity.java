@@ -1,10 +1,11 @@
 package com.one.roc;
 
-import android.content.pm.PackageManager;
-import android.graphics.drawable.Drawable;
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
+import android.view.View;
 import android.widget.ImageView;
+
+import com.one.roc.ioc1.RViewAct;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,26 +18,22 @@ public class MainActivity extends AppCompatActivity {
 
 
         ImageView imageView = findViewById(R.id.iv);
-        String pkg = "com.kohler.photo";//your package name
-        Drawable icon = null;
-        try {
-            icon = this.getPackageManager().getApplicationIcon(pkg);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        imageView.setImageDrawable(icon);
+//        String pkg = "com.kohler.photo";//your package name
+//        Drawable icon = null;
+//        try {
+//            icon = this.getPackageManager().getApplicationIcon(pkg);
+//        } catch (PackageManager.NameNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//        imageView.setImageDrawable(icon);
 
-new CountDownTimer(10*1000,1000) {
+        imageView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onTick(long millisUntilFinished) {
-
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, RViewAct.class);
+                startActivity(intent);
             }
-
-            @Override
-            public void onFinish() {
-                android.os.Process.killProcess(android.os.Process.myPid());
-            }
-        }.start();
+        });
 
 
     }
