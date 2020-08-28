@@ -1,3 +1,4 @@
+include ':librview'
 include ':kcore'
 include ':app'
 rootProject.name = "Roc"
