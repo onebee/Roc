@@ -1,6 +1,7 @@
 package com.one.librview;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.View;
 
 import com.one.librview.annotation.ContentView;
@@ -14,18 +15,14 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 
-
 /**
  * @author diaokaibin@gmail.com on 2020/8/28.
  */
 public class InjectManager {
 
     public static void inject(Activity act) {
-
         injectLayout(act);
-
         injectViews(act);
-
         injectEvents(act);
     }
 
@@ -47,6 +44,12 @@ public class InjectManager {
                         String listenerSetter = eventBase.listenerSetter();
                         Class<?> listenerType = eventBase.listenerType();
                         String callBackListener = eventBase.callBackListener();
+
+                        Log.i(Common.TAG,"listenerSetter =  " + listenerSetter);
+                        Log.i(Common.TAG,"listenerType =  " + listenerType);
+                        Log.i(Common.TAG,"callBackListener =  " + callBackListener + "\n\n");
+                        Log.i(Common.TAG,"----------------------------------------- = -- "  + "\n\n");
+
                         try {
                             // 通过annotationType 获取 onClick 注解的value值
                             Method valueMethod = annotationType.getDeclaredMethod("value");
@@ -73,6 +76,7 @@ public class InjectManager {
                                 // 获取指定的方法
                                 Method setter = view.getClass().getMethod(listenerSetter, listenerType);
                                 // 执行方法
+                                Log.i(Common.TAG, " 执行方法 : " + setter);
                                 setter.invoke(view, listener);
                             }
                         } catch (Exception e) {
@@ -104,11 +108,7 @@ public class InjectManager {
                     field.setAccessible(true);
                     field.set(act, view);
                     System.out.println("");
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                    e.printStackTrace();
-                } catch (NoSuchMethodException e) {
+                } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
                     e.printStackTrace();
                 }
             }
@@ -127,11 +127,7 @@ public class InjectManager {
                 method.invoke(act, layoutId);
                 // 另一种写法：
                 // act.setContentView(layoutId);
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
-                e.printStackTrace();
-            } catch (NoSuchMethodException e) {
+            } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
                 e.printStackTrace();
             }
         }

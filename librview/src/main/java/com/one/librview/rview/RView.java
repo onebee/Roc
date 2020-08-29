@@ -46,11 +46,11 @@ public class RView extends RecyclerView {
 
     /** 设置点击监听属性 */
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
-        adapter.setmOnItemClickListener(onItemClickListener);
+        adapter.setOnItemClickListener(onItemClickListener);
     }
 
     /** 设置长按监听属性 */
     public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener) {
-        adapter.setmOnItemLongClickListener(onItemLongClickListener);
+        adapter.setOnItemLongClickListener(onItemLongClickListener);
     }
 }

@@ -1,5 +1,7 @@
 package com.one.librview;
 
+import android.util.Log;
+
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -25,8 +27,11 @@ public class ListenerInvocationHandler implements InvocationHandler {
         if (target != null) {
             // 获取需要拦截的方法名
             String methodName = method.getName(); // 假如是onClick
+            Log.i(Common.TAG, "拦截的方法名 : " + methodName);
             // 重新赋值，将拦截的方法换为show
             method = methodHashMap.get(methodName); // 执行拦截的方法，show
+            Log.i(Common.TAG, "替换执行的的方法名 : " + method);
+            Log.i(Common.TAG, "args = " + args);
             if (method != null) {
                 return method.invoke(target, args);
             }
