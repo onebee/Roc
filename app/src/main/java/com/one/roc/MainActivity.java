@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.one.roc.ioc1.RViewActivity;
+import com.one.roc.aop1.AOP1Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, RViewActivity.class);
+                Intent intent = new Intent(MainActivity.this, AOP1Activity.class);
                 startActivity(intent);
             }
         });

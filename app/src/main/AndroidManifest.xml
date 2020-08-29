@@ -14,6 +14,7 @@
     <uses-permission-sdk-23 android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -30,6 +31,7 @@
         <activity android:name=".interrupt.CancelEventActivity" />
         <activity android:name=".interrupt.InterceptActivity" />
         <activity android:name=".ioc1.RViewActivity"/>
+        <activity android:name=".aop1.AOP1Activity" />
     </application>
 
 </manifest>
