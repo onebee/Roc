@@ -1,5 +1,6 @@
 package com.one.librview;
 
+import android.app.Activity;
 import android.view.View;
 
 import com.one.librview.annotation.ContentView;
@@ -12,7 +13,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 
 /**
@@ -20,7 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
  */
 public class InjectManager {
 
-    public static void inject(AppCompatActivity act) {
+    public static void inject(Activity act) {
 
         injectLayout(act);
 
@@ -29,8 +29,8 @@ public class InjectManager {
         injectEvents(act);
     }
 
-    public static void injectEvents(AppCompatActivity act) {
-        Class<? extends AppCompatActivity> clazz = act.getClass();
+    public static void injectEvents(Activity act) {
+        Class<? extends Activity> clazz = act.getClass();
         // 获取类的所有方法
         Method[] methods = clazz.getDeclaredMethods();
         for (Method method : methods) {
@@ -84,8 +84,8 @@ public class InjectManager {
         }
     }
 
-    private static void injectViews(AppCompatActivity act) {
-        Class<? extends AppCompatActivity> clazz = act.getClass();
+    private static void injectViews(Activity act) {
+        Class<? extends Activity> clazz = act.getClass();
         // 获取类的所有属性
         Field[] fields = clazz.getDeclaredFields();
         // 循环每个属性
@@ -115,8 +115,8 @@ public class InjectManager {
         }
     }
 
-    private static void injectLayout(AppCompatActivity act) {
-        Class<? extends AppCompatActivity> clazz = act.getClass();
+    private static void injectLayout(Activity act) {
+        Class<? extends Activity> clazz = act.getClass();
         // 获取类的注解
         ContentView contentView = clazz.getAnnotation(ContentView.class);
         if (contentView != null) {
