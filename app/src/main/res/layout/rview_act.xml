@@ -11,4 +11,31 @@
         android:id="@+id/recyclerView"
         />
 
+    <TextView
+        android:gravity="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="hello one bit !"
+        android:textSize="33sp"
+        android:textColor="#FFFFFF"
+        android:background="@color/colorPrimaryDark"
+        />
+
+    <TextView
+        android:gravity="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="内核计划"
+        android:textSize="33sp"
+        android:textColor="#FFFFFF"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

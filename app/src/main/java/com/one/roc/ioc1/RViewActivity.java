@@ -2,13 +2,16 @@ package com.one.roc.ioc1;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.one.librview.InjectManager;
 import com.one.librview.annotation.ContentView;
 import com.one.librview.annotation.InjectView;
+import com.one.librview.annotation.OnClick;
 import com.one.librview.annotation.OnItemClick;
 import com.one.librview.annotation.OnItemLongClick;
+import com.one.librview.annotation.OnLongClick;
 import com.one.librview.rview.RView;
 import com.one.roc.R;
 
@@ -48,6 +51,37 @@ public class RViewActivity extends BaseActivity {
     public boolean itemLongClick(View view, UserInfo info, int position) {
         Toast.makeText(this, "OnItemLongClick\n" + info.getPassword(), Toast.LENGTH_SHORT).show();
         return true;
+    }
+
+    @OnClick({R.id.tv, R.id.tv1})
+    public void clickTextView(View view) {
+        switch (view.getId()) {
+            case R.id.tv:
+                Toast.makeText(this, "click tv " + ((TextView) view).getText().toString(), Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.tv1:
+                Toast.makeText(this, "click tv1 " + ((TextView) view).getText().toString(), Toast.LENGTH_SHORT).show();
+                break;
+        }
+
+    }
+
+    @OnLongClick({R.id.tv, R.id.tv1})
+    public boolean clickLongTextView(View view) {
+        switch (view.getId()) {
+            case R.id.tv:
+                Toast.makeText(this, "long click tv " + ((TextView) view).getText().toString(), Toast.LENGTH_SHORT).show();
+
+                break;
+
+            case R.id.tv1:
+                Toast.makeText(this, "long click tv1  " + ((TextView) view).getText().toString(), Toast.LENGTH_SHORT).show();
+                break;
+        }
+
+        return true;
+
     }
 
     private void initRView() {
