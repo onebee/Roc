@@ -2,6 +2,7 @@ package com.one.screenadapter;
 
 import android.content.Context;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.WindowManager;
 
 /**
@@ -9,6 +10,8 @@ import android.view.WindowManager;
  */
 public class UIUtils {
 
+
+    private String TAG = this.getClass().getSimpleName();
 
     private static UIUtils UIUtils;
 
@@ -38,6 +41,9 @@ public class UIUtils {
                     mDisplayWidth = displayMetrics.widthPixels;
                     mDisplayHeight = displayMetrics.heightPixels - getStatusBarHeight(context);
                 }
+
+                Log.i(TAG, " displayMetrics.widthPixels =  " + displayMetrics.widthPixels);
+                Log.i(TAG, "  displayMetrics.heightPixels =  " + displayMetrics.heightPixels);
 
             }
 
