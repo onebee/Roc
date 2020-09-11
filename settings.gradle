@@ -1,3 +1,5 @@
+include ':KTools'
+include ':JTools'
 include ':librview'
 include ':kcore'
 include ':app'
