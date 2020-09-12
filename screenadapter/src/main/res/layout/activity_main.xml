@@ -7,8 +7,9 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:id="@+id/tv"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
         android:background="@color/colorPrimary"
         android:text="Hello World!"
 

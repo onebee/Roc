@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 public class Density {
 
 
-    private static final float WIDTH = 100; //参考设备的宽,单位是dp
+    private static final float WIDTH = 360; //参考设备的宽,单位是dp
 
 
     private static float appDensity;  // 屏幕密度
