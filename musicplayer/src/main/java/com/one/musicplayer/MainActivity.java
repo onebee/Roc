@@ -13,7 +13,10 @@ import com.one.musicplayer.view.MyNestedScrollView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,8 +24,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        UIUtils.getInstance(this);
         initView();
+        notifyData();
 
     }
     Toolbar toolbar;
@@ -61,6 +65,21 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void postImage() {
+
+    }
+
+    private void notifyData() {
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        music_recycler.setLayoutManager(mLayoutManager);
+        // 需加，不然滑动不流畅
+        music_recycler.setNestedScrollingEnabled(false);
+        music_recycler.setHasFixedSize(false);
+        final MusicAdapter adapter = new MusicAdapter(this);
+        adapter.notifyDataSetChanged();
+        music_recycler.setAdapter(adapter);
+    }
 
     @Override
     protected void onResume() {
