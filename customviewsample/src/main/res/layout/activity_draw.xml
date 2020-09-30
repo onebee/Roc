@@ -1,20 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-   <com.one.customviewsample.drawable.DrawableView
-       android:layout_width="300dp"
-       android:layout_height="400dp"/>
 
 
-   <ImageView
-       android:layout_width="500dp"
-       android:layout_height="500dp"
-       app:layout_constraintBottom_toBottomOf="parent"
-       app:layout_constraintRight_toRightOf="parent"
+   <EditText
+       android:background="#999999"
+       android:layout_width="match_parent"
+       android:layout_height="50dp"
+
+       android:hint="hello"
+       />
+
+
+
+   <com.one.customviewsample.material.MaterialEditText
+       android:layout_width="match_parent"
+       android:layout_height="50dp"
+
+       android:background="#FFEB3B"
+       android:hint="one bit"
+
+       app:useFloatingLabel="true"
 
        />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
