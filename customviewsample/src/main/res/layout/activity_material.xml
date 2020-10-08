@@ -28,7 +28,9 @@
             android:layout_height="match_parent"
             android:background="@android:color/white"
             android:scrollbars="vertical"
-            tools:listitem="@layout/item_feed" />
+            tools:listitem="@layout/item_feed"
+            tools:itemCount="1"
+            />
 
         <RelativeLayout
             android:id="@+id/suspension_bar"
