@@ -54,6 +54,14 @@ class SquareUtils {
         }).build();
     }
 
+//    public static Picasso getPicasso(Context context, ProgressListener listener) {
+//        OkHttpClient client = getProgressBarClient(listener);
+//        OkHttpDownloader downloader = new OkHttpDownloader(new OkHttpClient());
+//        return new Picasso.Builder(context).downloader(downloader)
+//                .memoryCache(com.squareup.picasso.Cache.NONE)
+//                .build();
+//    }
+
     /**
      * Download Big Image only, Not singleton but shared cache
      */

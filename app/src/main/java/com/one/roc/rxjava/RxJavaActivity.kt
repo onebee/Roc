@@ -16,8 +16,10 @@ import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.functions.Function
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_rxjava.*
+import okhttp3.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.IOException
 
 /**
  * @author  diaokaibin@gmail.com on 2020/10/20.
@@ -53,6 +55,25 @@ class RxJavaActivity : AppCompatActivity() {
 //
 //
 //        })
+
+
+//        val okHttpClient = OkHttpClient();
+//
+//        val request = Request.Builder().url("http:baidu.com").build()
+//
+//
+//        okHttpClient.newCall(request).enqueue(object :Callback{
+//            override fun onFailure(call: Call, e: IOException) {
+//                TODO("Not yet implemented")
+//            }
+//
+//            override fun onResponse(call: Call, response: Response) {
+//                TODO("Not yet implemented")
+//            }
+//
+//        })
+
+
 
 
         val single = Single.just(1)
