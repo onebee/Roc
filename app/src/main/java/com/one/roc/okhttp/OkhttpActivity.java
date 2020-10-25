@@ -48,8 +48,16 @@ public class OkhttpActivity extends AppCompatActivity {
 
             }
         });
+        listener = new ProgressResponseBody.ProgressListener() {
+            @Override
+            public void update(int percent) {
+                tv.setText(" process = " + percent);
+                Timber.e("process = " + percent);
+            }
+        };
 
-        listener = percent -> tv.setText(" process = " + percent);
+
+
 
 
     }
@@ -68,6 +76,7 @@ public class OkhttpActivity extends AppCompatActivity {
 
         Request request = new Request.Builder()
                 .url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603551045400&di=3f7eba62ef0be35c5e261f5b46e41a09&imgtype=0&src=http%3A%2F%2Ft8.baidu.com%2Fit%2Fu%3D1484500186%2C1503043093%26fm%3D79%26app%3D86%26f%3DJPEG%3Fw%3D1280%26h%3D853")
+//                .url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603551388213&di=aeca1ccea5ba7e804b649533379c2a7f&imgtype=0&src=http%3A%2F%2Ft8.baidu.com%2Fit%2Fu%3D143233297%2C3561721230%26fm%3D79%26app%3D86%26f%3DJPEG%3Fw%3D1500%26h%3D1000")
                 .build();
 
         OkHttpClient client = builder.build();
