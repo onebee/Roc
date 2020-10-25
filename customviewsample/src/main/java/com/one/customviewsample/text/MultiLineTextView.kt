@@ -1,7 +1,6 @@
 package com.one.customviewsample.text
 
 import android.content.Context
-import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
@@ -9,7 +8,6 @@ import android.graphics.Paint
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.View
-import androidx.appcompat.widget.AppCompatTextView
 import com.one.customviewsample.R
 import com.one.ktools.ex.dp
 
