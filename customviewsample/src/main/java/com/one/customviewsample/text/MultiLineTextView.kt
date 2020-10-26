@@ -15,7 +15,7 @@ import com.one.ktools.ex.dp
  * @author  diaokaibin@gmail.com on 2020/9/21.
  */
 
-private val IMAGE_SIZE = 150.dp
+private val IMAGE_SIZE = 250.dp
 private val IMAGE_PADDING = 50.dp
 
 

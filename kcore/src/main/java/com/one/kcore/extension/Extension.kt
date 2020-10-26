@@ -3,8 +3,8 @@ package com.one.kcore.extension
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Matrix
 import android.util.TypedValue
-import com.one.kcore.R
 
 /**
  * @author  diaokaibin@gmail.com on 2020/8/29.
@@ -35,4 +35,14 @@ fun getAvatar(res: Resources, width: Int, id: Int): Bitmap {
     options.inTargetDensity = width
     return BitmapFactory.decodeResource(res, id, options)
 
+}
+
+fun resizeImage(bitmap: Bitmap, width: Int, height: Int): Bitmap {
+    val bmpWidth = bitmap.width
+    val bmpHeight = bitmap.height
+    val scaleWidth = width.toFloat() / bmpWidth
+    val scaleHeight = height.toFloat() / bmpHeight
+    val matrix = Matrix()
+    matrix.postScale(scaleWidth, scaleHeight)
+    return Bitmap.createBitmap(bitmap, 0, 0, bmpWidth, bmpHeight, matrix, true)
 }
