@@ -8,6 +8,7 @@ import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
 import android.widget.OverScroller
+import androidx.core.animation.doOnEnd
 import androidx.core.view.GestureDetectorCompat
 import androidx.core.view.ViewCompat
 import com.one.customviewsample.R
@@ -61,6 +62,14 @@ class ScaleImageView(context: Context?, attrs: AttributeSet?) : View(context, at
     private val scaleAnimate by lazy {
         ObjectAnimator.ofFloat(this, "scaleFraction", 0f, 1f).apply {
             duration = 300
+
+            // 修正之后 不需要这个地方再次修正了
+//            doOnEnd {
+//                if (!big) {
+//                    offsetX = 0f
+//                    offsetY = 0f
+//                }
+//            }
         }
     }
 
@@ -83,9 +92,7 @@ class ScaleImageView(context: Context?, attrs: AttributeSet?) : View(context, at
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-
-
-        canvas.translate(offsetX, offsetY)
+        canvas.translate(offsetX * scaleFraction, offsetY * scaleFraction)
 
         var scale = smallScale + (bigScale - smallScale) * scaleFraction
         canvas.scale(scale, scale, width / 2f, height / 2f)
@@ -118,26 +125,25 @@ class ScaleImageView(context: Context?, attrs: AttributeSet?) : View(context, at
     }
 
     override fun onScroll(e1: MotionEvent?, e2: MotionEvent?, distanceX: Float, distanceY: Float): Boolean {
-
-
         if (big) {
             offsetX -= distanceX
-
-            // 滑动的偏移修正
-            offsetX = min(offsetX, (bitmap.width * bigScale - width) / 2)
-            offsetX = max(offsetX, -(bitmap.width * bigScale - width) / 2)
-
-
             offsetY -= distanceY
-            offsetY = min(offsetY, (bitmap.height * bigScale - height) / 2)
-            offsetY = max(offsetY, -(bitmap.height * bigScale - height) / 2)
+            // 滑动的偏移修正,使其有边界 不能超出某个边界
+            fixOffset()
 
             invalidate()
         }
 
-
         return false
 
+    }
+
+    private fun fixOffset() {
+        offsetX = min(offsetX, (bitmap.width * bigScale - width) / 2)
+        offsetX = max(offsetX, -(bitmap.width * bigScale - width) / 2)
+
+        offsetY = min(offsetY, (bitmap.height * bigScale - height) / 2)
+        offsetY = max(offsetY, -(bitmap.height * bigScale - height) / 2)
     }
 
     override fun onLongPress(e: MotionEvent?) {
@@ -151,7 +157,7 @@ class ScaleImageView(context: Context?, attrs: AttributeSet?) : View(context, at
                     offsetX.toInt(), offsetY.toInt(), velocityX.toInt(), velocityY.toInt(),
                     -((bitmap.width * bigScale - width) / 2).toInt(), ((bitmap.width * bigScale - width) / 2).toInt(),
                     -((bitmap.height * bigScale - height) / 2).toInt(), ((bitmap.height * bigScale - height) / 2).toInt(),
-                    55.dp.toInt(),55.dp.toInt()  )
+                    55.dp.toInt(), 55.dp.toInt())
 
 //            for (i in 10..100 step 10) {
 //                postDelayed({ refresh() }, i.toLong())
@@ -167,7 +173,7 @@ class ScaleImageView(context: Context?, attrs: AttributeSet?) : View(context, at
             // post 会马上推到主线程 .
 //            post()
 
-            ViewCompat.postOnAnimation(this,this)
+            ViewCompat.postOnAnimation(this, this)
         }
         return false
     }
@@ -180,13 +186,14 @@ class ScaleImageView(context: Context?, attrs: AttributeSet?) : View(context, at
         offsetY = scroller.currY.toFloat()
         invalidate()
     }
+
     override fun run() {
         if (scroller.computeScrollOffset()) {
             offsetX = scroller.currX.toFloat()
             offsetY = scroller.currY.toFloat()
             invalidate()
 //            postOnAnimation(this)
-            ViewCompat.postOnAnimation(this,this)
+            ViewCompat.postOnAnimation(this, this)
         }
 
     }
@@ -196,11 +203,20 @@ class ScaleImageView(context: Context?, attrs: AttributeSet?) : View(context, at
         return false
     }
 
-    override fun onDoubleTap(e: MotionEvent?): Boolean {
+    override fun onDoubleTap(e: MotionEvent): Boolean {
         big = !big
         if (big) {
+            // 双击放大时候的修正 , 保证点击的位置 跟放大后的位置 一样
+            offsetX = (e.x - width/2)*(1-bigScale/smallScale)
+            offsetY = (e.y - height/2)*(1-bigScale/smallScale)
+
+            fixOffset()
             scaleAnimate.start()
         } else {
+
+            // 不放到这里 放到 onDraw 里面
+//            offsetX = 0f
+//            offsetY = 0f
             scaleAnimate.reverse()
         }
 
