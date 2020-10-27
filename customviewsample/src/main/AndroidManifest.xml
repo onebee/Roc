@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".scale.ScaleImageActivity">
+        <activity android:name=".viewpager2.ViewPager2Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

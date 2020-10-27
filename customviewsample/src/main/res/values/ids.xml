@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="fragment_today" type="id" />
+    <item name="fragment_three_day" type="id" />
+    <item name="fragment_traffic1" type="id" />
+    <item name="fragment_traffic2" type="id" />
+    <item name="fragment_memo1" type="id" />
+    <item name="fragment_memo2" type="id" />
+
+
+</resources>
