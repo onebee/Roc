@@ -8,7 +8,6 @@ import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
 import android.widget.OverScroller
-import androidx.core.animation.doOnEnd
 import androidx.core.view.GestureDetectorCompat
 import androidx.core.view.ViewCompat
 import com.one.customviewsample.R
@@ -24,7 +23,7 @@ import kotlin.math.min
 private val IMAGE_SIZE = 100.dp.toInt()
 private const val EXTRA_SCALE_FACTOR = 1.5F
 
-class ScaleImageView(context: Context?, attrs: AttributeSet?) : View(context, attrs), GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener, Runnable {
+class ScaleImageView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
 
     private var bigScale = 0f
     private var smallScale = 0f
@@ -50,9 +49,13 @@ class ScaleImageView(context: Context?, attrs: AttributeSet?) : View(context, at
 
     private var big = false
 
-    private val gestureDetector = GestureDetectorCompat(context, this).apply {
+    private val henOnGestureListener = HenOnGestureListener()
+
+    private val gestureDetector = GestureDetectorCompat(context, henOnGestureListener).apply {
 
     }
+
+    private val henRunnable = FillingRunnable()
 
     private var scaleFraction = 0f
         set(value) {
@@ -111,32 +114,6 @@ class ScaleImageView(context: Context?, attrs: AttributeSet?) : View(context, at
 
     }
 
-    override fun onDown(e: MotionEvent?): Boolean {
-        return true
-    }
-
-    override fun onShowPress(e: MotionEvent?) {
-
-
-    }
-
-    override fun onSingleTapUp(e: MotionEvent?): Boolean {
-        return true
-    }
-
-    override fun onScroll(e1: MotionEvent?, e2: MotionEvent?, distanceX: Float, distanceY: Float): Boolean {
-        if (big) {
-            offsetX -= distanceX
-            offsetY -= distanceY
-            // 滑动的偏移修正,使其有边界 不能超出某个边界
-            fixOffset()
-
-            invalidate()
-        }
-
-        return false
-
-    }
 
     private fun fixOffset() {
         offsetX = min(offsetX, (bitmap.width * bigScale - width) / 2)
@@ -144,38 +121,6 @@ class ScaleImageView(context: Context?, attrs: AttributeSet?) : View(context, at
 
         offsetY = min(offsetY, (bitmap.height * bigScale - height) / 2)
         offsetY = max(offsetY, -(bitmap.height * bigScale - height) / 2)
-    }
-
-    override fun onLongPress(e: MotionEvent?) {
-
-
-    }
-
-    override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
-        if (big) {
-            scroller.fling(
-                    offsetX.toInt(), offsetY.toInt(), velocityX.toInt(), velocityY.toInt(),
-                    -((bitmap.width * bigScale - width) / 2).toInt(), ((bitmap.width * bigScale - width) / 2).toInt(),
-                    -((bitmap.height * bigScale - height) / 2).toInt(), ((bitmap.height * bigScale - height) / 2).toInt(),
-                    55.dp.toInt(), 55.dp.toInt())
-
-//            for (i in 10..100 step 10) {
-//                postDelayed({ refresh() }, i.toLong())
-//            }
-
-            /**
-             * 在下一帧调用 这里面传的是 runnable 每掉一次 都会创建 runnable 对象
-             */
-//            postOnAnimation { refresh() }
-
-
-//            postOnAnimation(this)
-            // post 会马上推到主线程 .
-//            post()
-
-            ViewCompat.postOnAnimation(this, this)
-        }
-        return false
     }
 
 
@@ -187,45 +132,83 @@ class ScaleImageView(context: Context?, attrs: AttributeSet?) : View(context, at
         invalidate()
     }
 
-    override fun run() {
-        if (scroller.computeScrollOffset()) {
-            offsetX = scroller.currX.toFloat()
-            offsetY = scroller.currY.toFloat()
-            invalidate()
-//            postOnAnimation(this)
-            ViewCompat.postOnAnimation(this, this)
+
+    inner class HenOnGestureListener : GestureDetector.SimpleOnGestureListener() {
+        override fun onDown(e: MotionEvent?): Boolean {
+            return true
         }
 
-    }
+        override fun onScroll(e1: MotionEvent?, e2: MotionEvent?, distanceX: Float, distanceY: Float): Boolean {
+            if (big) {
+                offsetX -= distanceX
+                offsetY -= distanceY
+                // 滑动的偏移修正,使其有边界 不能超出某个边界
+                fixOffset()
+                invalidate()
+            }
 
-    override fun onSingleTapConfirmed(e: MotionEvent?): Boolean {
+            return false
+        }
 
-        return false
-    }
 
-    override fun onDoubleTap(e: MotionEvent): Boolean {
-        big = !big
-        if (big) {
-            // 双击放大时候的修正 , 保证点击的位置 跟放大后的位置 一样
-            offsetX = (e.x - width/2)*(1-bigScale/smallScale)
-            offsetY = (e.y - height/2)*(1-bigScale/smallScale)
+        override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
+            if (big) {
+                scroller.fling(
+                        offsetX.toInt(), offsetY.toInt(), velocityX.toInt(), velocityY.toInt(),
+                        -((bitmap.width * bigScale - width) / 2).toInt(), ((bitmap.width * bigScale - width) / 2).toInt(),
+                        -((bitmap.height * bigScale - height) / 2).toInt(), ((bitmap.height * bigScale - height) / 2).toInt(),
+                        55.dp.toInt(), 55.dp.toInt())
 
-            fixOffset()
-            scaleAnimate.start()
-        } else {
+//            for (i in 10..100 step 10) {
+//                postDelayed({ refresh() }, i.toLong())
+//            }
 
-            // 不放到这里 放到 onDraw 里面
+                /**
+                 * 在下一帧调用 这里面传的是 runnable 每掉一次 都会创建 runnable 对象
+                 */
+//            postOnAnimation { refresh() }
+//            postOnAnimation(this)
+                // post 会马上推到主线程 .
+//            post()
+
+                ViewCompat.postOnAnimation(this@ScaleImageView, henRunnable)
+            }
+            return false
+        }
+
+
+        override fun onDoubleTap(e: MotionEvent): Boolean {
+            big = !big
+            if (big) {
+                // 双击放大时候的修正 , 保证点击的位置 跟放大后的位置 一样
+                offsetX = (e.x - width / 2) * (1 - bigScale / smallScale)
+                offsetY = (e.y - height / 2) * (1 - bigScale / smallScale)
+
+                fixOffset()
+                scaleAnimate.start()
+            } else {
+
+                // 不放到这里 放到 onDraw 里面
 //            offsetX = 0f
 //            offsetY = 0f
-            scaleAnimate.reverse()
+                scaleAnimate.reverse()
+            }
+
+            return true
         }
 
-        return true
     }
 
-    override fun onDoubleTapEvent(e: MotionEvent?): Boolean {
-        return true
+    inner class FillingRunnable : Runnable {
+        override fun run() {
+            if (scroller.computeScrollOffset()) {
+                offsetX = scroller.currX.toFloat()
+                offsetY = scroller.currY.toFloat()
+                invalidate()
+//            postOnAnimation(this)
+                ViewCompat.postOnAnimation(this@ScaleImageView, this)
+            }
+        }
+
     }
-
-
 }
