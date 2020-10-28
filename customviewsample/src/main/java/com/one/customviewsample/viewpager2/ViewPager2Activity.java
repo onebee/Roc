@@ -41,7 +41,7 @@ public class ViewPager2Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 adapterFragmentPager.update1();
-                adapterFragmentPager.notifyDataSetChanged();
+//                adapterFragmentPager.notifyDataSetChanged();
             }
         });
 
@@ -49,7 +49,7 @@ public class ViewPager2Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 adapterFragmentPager.update2();
-                adapterFragmentPager.notifyDataSetChanged();
+//                adapterFragmentPager.notifyDataSetChanged();
             }
         });
 

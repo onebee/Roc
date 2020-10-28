@@ -43,6 +43,8 @@ public class AdapterFragmentPager extends FragmentStateAdapter {
 
         mSet.add(idToday);
         mSet.add(idThreeDay);
+
+        notifyDataSetChanged();
     }
 
     public void update1() {
@@ -58,6 +60,8 @@ public class AdapterFragmentPager extends FragmentStateAdapter {
         mSet.add(idToday);
         mSet.add(idThreeDay);
         mSet.add(idMemo1);
+
+        notifyDataSetChanged();
 
     }
 
@@ -75,7 +79,7 @@ public class AdapterFragmentPager extends FragmentStateAdapter {
         mSet.add(idMemo1);
         mSet.add(idToday);
         mSet.add(idThreeDay);
-
+        notifyDataSetChanged();
     }
 
     @NonNull
