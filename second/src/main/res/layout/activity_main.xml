@@ -7,13 +7,12 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.one.second.Xfermode.AvatarView
+    <com.one.second.text.SportView
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_width="400dp"
         android:layout_height="400dp"
 
-        android:background="@color/design_default_color_primary"
         />
 
 
