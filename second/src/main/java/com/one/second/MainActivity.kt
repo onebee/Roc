@@ -2,7 +2,7 @@ package com.one.second
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.one.second.view.PieView
+import com.one.second.draw.PieView
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {

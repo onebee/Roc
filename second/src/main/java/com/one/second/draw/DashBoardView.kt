@@ -1,4 +1,4 @@
-package com.one.second.view
+package com.one.second.draw
 
 import android.content.Context
 import android.graphics.*
