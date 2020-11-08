@@ -10,13 +10,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val pie = findViewById<PieView>(R.id.pie)
-
-        pie.setOnClickListener {
-
-            var random = Random.nextInt(5)
-            pie.setIndex(random)
-        }
 
     }
 }
