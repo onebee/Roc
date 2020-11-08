@@ -7,11 +7,11 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.one.second.text.SportView
+    <com.one.second.text.MultiTextView
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
 
         />
 
