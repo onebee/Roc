@@ -7,14 +7,22 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.one.second.clipandcamera.CameraView
+<!--    <com.one.second.animate.CameraView2-->
+<!--        android:id="@+id/view"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+
+<!--        />-->
+
+
+    <ImageView
         android:id="@+id/view"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/avatar"
 
         />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
