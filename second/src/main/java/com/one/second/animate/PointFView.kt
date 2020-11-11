@@ -23,6 +23,9 @@ class PointFView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
 
 
     init {
+        setLayerType(LAYER_TYPE_HARDWARE,null)
+        setLayerType(LAYER_TYPE_SOFTWARE,null)
+        setLayerType(LAYER_TYPE_NONE,null)
 
         paint.strokeWidth = 25.dp
         paint.strokeCap = Paint.Cap.ROUND;
