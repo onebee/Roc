@@ -9,6 +9,7 @@ import android.graphics.Path
 import android.util.AttributeSet
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
+import androidx.core.graphics.withSave
 import com.one.kcore.extension.dp
 import com.one.kcore.extension.getAvatar
 import com.one.second.R
@@ -31,47 +32,80 @@ class CameraView2(context: Context?, attrs: AttributeSet?) : View(context, attrs
         addOval(BITMAP_PADDING, BITMAP_PADDING, BITMAP_PADDING + BITMAP_SIZE, BITMAP_PADDING + BITMAP_SIZE, Path.Direction.CCW)
     }
 
-    var fraction=0f
+    var fraction = 0f
         set(value) {
             field = value
             invalidate()
         }
 
-    private var objectAnimator = ObjectAnimator.ofFloat(this,"fraction",0f,90f).apply {
+    private var objectAnimator = ObjectAnimator.ofFloat(this, "fraction", 0f, 90f).apply {
         duration = 5000
 //        interpolator = AccelerateDecelerateInterpolator()
     }
 
+
+    private var topFlip = 0f
+        set(value) {
+            field = value
+            invalidate()
+        }
+
+    private var bottomFlip = 30f
+        set(value) {
+            field = value
+            invalidate()
+        }
+
+    private var flipRotation = 0f
+        set(value) {
+            field = value
+            invalidate()
+        }
+
+
     init {
 
-        camera.rotateX(30f)
+
         camera.setLocation(0f, 0f, -8f * resources.displayMetrics.density)
     }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-//        camera.rotateX(fraction)
         // 上半部分
-        canvas.save()
-        canvas.translate((BITMAP_PADDING + BITMAP_SIZE / 2), (BITMAP_PADDING + BITMAP_SIZE / 2))
-        canvas.rotate(-30f)
-        canvas.clipRect(-BITMAP_SIZE, -BITMAP_SIZE, BITMAP_SIZE,  0f)
-        canvas.rotate(30f)
-        canvas.translate(-(BITMAP_PADDING + BITMAP_SIZE / 2), -(BITMAP_PADDING + BITMAP_SIZE / 2))
-        canvas.drawBitmap(bitmap, BITMAP_PADDING, BITMAP_PADDING, paint)
-        canvas.restore()
+        canvas.withSave {
+            canvas.translate((BITMAP_PADDING + BITMAP_SIZE / 2), (BITMAP_PADDING + BITMAP_SIZE / 2))
+            canvas.rotate(-flipRotation)
+
+            camera.save()
+            camera.rotateX(topFlip)
+            camera.applyToCanvas(canvas)
+            camera.restore()
+
+            canvas.clipRect(-BITMAP_SIZE, -BITMAP_SIZE, BITMAP_SIZE, 0f)
+            canvas.rotate(flipRotation)
+            canvas.translate(-(BITMAP_PADDING + BITMAP_SIZE / 2), -(BITMAP_PADDING + BITMAP_SIZE / 2))
+            canvas.drawBitmap(bitmap, BITMAP_PADDING, BITMAP_PADDING, paint)
+        }
+
 
         // 下半部分
-        canvas.save()
-        canvas.translate((BITMAP_PADDING + BITMAP_SIZE / 2), (BITMAP_PADDING + BITMAP_SIZE / 2))
-        canvas.rotate(-30f)
-        camera.applyToCanvas(canvas)
-        canvas.clipRect(-BITMAP_SIZE, 0F, BITMAP_SIZE,  BITMAP_SIZE)
-        canvas.rotate(30f)
-        canvas.translate(-(BITMAP_PADDING + BITMAP_SIZE / 2), -(BITMAP_PADDING + BITMAP_SIZE / 2))
-        canvas.drawBitmap(bitmap, BITMAP_PADDING, BITMAP_PADDING, paint)
-        canvas.restore()
+        canvas.withSave {
+            canvas.translate((BITMAP_PADDING + BITMAP_SIZE / 2), (BITMAP_PADDING + BITMAP_SIZE / 2))
+            canvas.rotate(-flipRotation)
+
+            camera.save()
+            camera.rotateX(bottomFlip)
+            camera.applyToCanvas(canvas)
+            camera.restore();
+
+
+            canvas.clipRect(-BITMAP_SIZE, 0F, BITMAP_SIZE, BITMAP_SIZE)
+            canvas.rotate(flipRotation)
+            canvas.translate(-(BITMAP_PADDING + BITMAP_SIZE / 2), -(BITMAP_PADDING + BITMAP_SIZE / 2))
+            canvas.drawBitmap(bitmap, BITMAP_PADDING, BITMAP_PADDING, paint)
+        }
+
     }
 
     public fun setStart() {

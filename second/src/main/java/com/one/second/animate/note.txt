@@ -1,0 +1,42 @@
+//       var cameraView=  findViewById<CameraView2>(R.id.view)
+//        cameraView.setOnClickListener {
+//
+//            cameraView.setStart()
+//        }
+//
+//        cameraView.animate().
+
+//        view.animate().translationX(200.dp).setDuration(2500).start()
+
+
+//        var objectAnimator = ObjectAnimator.ofFloat(view,"radius",150.dp)
+//        objectAnimator.startDelay = 2000
+//        objectAnimator.start()
+
+//        var topFlipAnimator = ObjectAnimator.ofFloat(view,"topFlip",-60f)
+//        topFlipAnimator.duration = 5000
+//
+//        var bottomFlipAnimator = ObjectAnimator.ofFloat(view,"bottomFlip",60f)
+//        bottomFlipAnimator.duration = 5000
+////        bottomFlipAnimator.startDelay=1000
+////        bottomFlipAnimator.start()
+//
+//        var flipRotationAnimator = ObjectAnimator.ofFloat(view,"flipRotation",270f)
+//        flipRotationAnimator.duration = 5000
+////        flipRotationAnimator.startDelay=1000
+////        flipRotationAnimator.start()
+//
+//        var animatorSet = AnimatorSet()
+//        animatorSet.playSequentially(bottomFlipAnimator,flipRotationAnimator,topFlipAnimator)
+//        animatorSet.startDelay = 1000
+//
+//        animatorSet.start()
+
+
+//        var topFlipHolder = PropertyValuesHolder.ofFloat("topFlip",-60f)
+//        var bottomFlipHolder = PropertyValuesHolder.ofFloat("bottomFlip",60f)
+//        var flipRotationHolder = PropertyValuesHolder.ofFloat("flipRotation",270f)
+//
+//        val holderAnimator = ObjectAnimator.ofPropertyValuesHolder(view,bottomFlipHolder,flipRotationHolder,topFlipHolder)
+//        holderAnimator.startDelay = 1000
+//        holderAnimator.start()

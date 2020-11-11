@@ -1,5 +1,9 @@
 package com.one.second
 
+import android.animation.AnimatorSet
+import android.animation.Keyframe
+import android.animation.ObjectAnimator
+import android.animation.PropertyValuesHolder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.one.kcore.extension.dp
@@ -15,14 +19,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-//       var cameraView=  findViewById<CameraView2>(R.id.view)
-//        cameraView.setOnClickListener {
-//
-//            cameraView.setStart()
-//        }
-//
-//        cameraView.animate().
+        val length = 200.dp
+        val keyframe1 = Keyframe.ofFloat(0f, 0f)
+        val keyframe2 = Keyframe.ofFloat(0.2f, 1.5f * length)
+        val keyframe3 = Keyframe.ofFloat(0.8f, 0.6f * length)
+        val keyframe4 = Keyframe.ofFloat(1f, 1f * length)
 
-        view.animate().translationX(200.dp).setDuration(2500).start()
+        var keyframeHolder = PropertyValuesHolder.ofKeyframe("translationX",keyframe1,keyframe2,keyframe3,keyframe4)
+
+        val animator= ObjectAnimator.ofPropertyValuesHolder(view,keyframeHolder)
+        animator.startDelay = 1000
+        animator.duration = 5000
+        animator.start()
+
     }
 }
