@@ -5,6 +5,7 @@ import android.graphics.PointF
 import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.view.postDelayed
 import com.one.kcore.extension.dp
 import com.one.second.animate.CameraView2
 import com.one.second.animate.ProvinceTypeEvaluator
@@ -18,6 +19,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        view.postDelayed(3000) {
+            view.useFloatingLabel = false
+
+        }
 
 
     }
