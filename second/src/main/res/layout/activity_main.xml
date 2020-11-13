@@ -8,22 +8,11 @@
     tools:context=".MainActivity">
 
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="88dp"
-        android:background="@color/design_default_color_primary"
-        android:hint="one"
-        />
-
-
-    <com.one.second.material.MaterialTextView
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="88dp"
-        app:useFloatingLabel="true"
-        android:background="@color/cardview_dark_background"
-        android:hint="one"
-
+    <com.one.second.layoutsize.SquareImageView
+        android:layout_width="500dp"
+        android:layout_height="300dp"
+        android:scaleType="fitCenter"
+        android:background="@drawable/avatar"
         />
 
 </LinearLayout>
