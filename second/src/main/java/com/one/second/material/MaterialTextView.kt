@@ -33,7 +33,7 @@ class MaterialTextView(context: Context, attrs: AttributeSet) : androidx.appcomp
         ObjectAnimator.ofFloat(this, "floatingLabelFraction", 0f, 1f)
     }
 
-    var useFloatingLabel = true
+    var useFloatingLabel = false
         set(value) {
             if (field != value) {
 
@@ -41,20 +41,30 @@ class MaterialTextView(context: Context, attrs: AttributeSet) : androidx.appcomp
                 if (field) {
                     setPadding(paddingLeft, (paddingTop + VERTICAL_OFFSET).toInt(), paddingRight, paddingBottom)
                 } else {
-                    setPadding(paddingLeft, (paddingTop- VERTICAL_OFFSET).toInt(), paddingRight, paddingBottom)
+                    setPadding(paddingLeft, (paddingTop - VERTICAL_OFFSET).toInt(), paddingRight, paddingBottom)
                 }
             }
 
         }
 
     init {
+        for (index in 0 until attrs.attributeCount) {
 
-        // context.obtainStyledAttributes(attrs,R.styleable.matere)
+            attrs.getAttributeName(index)
+            attrs.getAttributeValue(index)
 
-        if (useFloatingLabel) {
-            setPadding(paddingLeft, (paddingTop + VERTICAL_OFFSET).toInt(), paddingRight, paddingBottom)
+
+            Log.i("-----", " attrs name = ${attrs.getAttributeName(index)}"
+                    + " , attrs value = ${attrs.getAttributeValue(index)} "
+            )
+
         }
 
+
+        val attributeSet = context.obtainStyledAttributes(attrs, R.styleable.MaterialTextView)
+        useFloatingLabel = attributeSet.getBoolean(R.styleable.MaterialTextView_useFloatingLabel, true)
+
+        attributeSet.recycle()
     }
 
     override fun onDraw(canvas: Canvas) {

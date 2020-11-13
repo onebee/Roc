@@ -20,6 +20,7 @@
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="88dp"
+        app:useFloatingLabel="true"
         android:background="@color/cardview_dark_background"
         android:hint="one"
 
