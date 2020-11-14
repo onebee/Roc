@@ -29,7 +29,11 @@ class CircleView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
 //        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         var size = ((RADIUS + PADDING) * 2).toInt()
-        setMeasuredDimension(size, size)
+
+        var width = resolveSize(size, widthMeasureSpec)
+        var height = resolveSize(size, heightMeasureSpec)
+
+        setMeasuredDimension(width, height)
 
 
     }
