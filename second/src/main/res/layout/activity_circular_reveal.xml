@@ -60,7 +60,7 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:src="@drawable/avatar"
-        android:id="@+id/iv"
+        android:id="@+id/iv_one"
         />
 
     <TextView
@@ -73,10 +73,16 @@
         android:text="nasdfkjabsjkdfbasfbbbadsfbads"
 
         />
+
+    <com.one.second.constraintlayout.OneHelper
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="iv_one"
+        />
     <com.one.second.constraintlayout.CircularRevealHelper
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        app:constraint_referenced_ids="iv,image,image2,image3,image4,tv"
+        app:constraint_referenced_ids="image,image2,image3,image4,tv"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
