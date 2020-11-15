@@ -17,13 +17,10 @@ class CircularRevealHelper(context: Context?, attrs: AttributeSet?) : Constraint
         super.updatePostLayout(container)
 
         referencedIds.forEach {
-
             val view = container.getViewById(it)
-
             val radius = hypot(view.width.toDouble(), view.height.toDouble())
-
             ViewAnimationUtils.createCircularReveal(view, 0, 0, 0f, radius.toFloat())
-                    .setDuration(2000)
+                    .setDuration(5000)
                     .start()
         }
 
