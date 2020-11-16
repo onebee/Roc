@@ -10,10 +10,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        view.setOnClickListener {
-            Toast.makeText(this,"click",Toast.LENGTH_SHORT).show()
-        }
-
     }
 
 
