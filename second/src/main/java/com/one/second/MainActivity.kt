@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.drag_listener_glide_view)
+        setContentView(R.layout.drag_up_down)
 
     }
 
