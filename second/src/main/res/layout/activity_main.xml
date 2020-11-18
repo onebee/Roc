@@ -7,15 +7,14 @@
     tools:context=".MainActivity">
 
 
-    <com.one.second.touch.TouchView
-        android:id="@+id/view"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@color/design_default_color_secondary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+    <com.one.second.drag.DragListenerGlideView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        />
+
+
+
+    </com.one.second.drag.DragListenerGlideView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

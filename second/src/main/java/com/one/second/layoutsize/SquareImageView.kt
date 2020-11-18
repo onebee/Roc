@@ -2,6 +2,8 @@ package com.one.second.layoutsize
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
+import android.view.DragEvent
 import android.view.View
 import android.widget.ImageView
 import java.lang.Double.min
@@ -25,6 +27,14 @@ class SquareImageView(context: Context, attrs: AttributeSet?) : androidx.appcomp
         var size = min(measuredHeight,measuredWidth)
         setMeasuredDimension(size,size)
 
+
+    }
+
+    override fun onDragEvent(event: DragEvent): Boolean {
+        var TAG = "-----"
+        Log.d(TAG, "SquareImageView onDragEvent: " + event.getAction())
+
+        return super.onDragEvent(event)
 
     }
 
