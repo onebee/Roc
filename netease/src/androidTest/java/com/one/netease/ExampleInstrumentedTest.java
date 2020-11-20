@@ -1,4 +1,4 @@
-package com.example.netease;
+package com.one.netease;
 
 import android.content.Context;
 

@@ -1,4 +1,4 @@
-package com.example.netease;
+package com.one.netease;
 
 import org.junit.Test;
 
