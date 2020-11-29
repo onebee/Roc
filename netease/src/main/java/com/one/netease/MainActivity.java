@@ -1,11 +1,15 @@
 package com.one.netease;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.AttributeSet;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -55,11 +59,16 @@ public class MainActivity extends AppCompatActivity {
                 handler1.sendMessage(msg);
             }
         }).start();
+
+
+
+
+
     }
 
+    @Nullable
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
+    public View onCreateView(@NonNull String name, @NonNull Context context, @NonNull AttributeSet attrs) {
+        return super.onCreateView(name, context, attrs);
     }
 }
