@@ -1,3 +1,4 @@
+include ':plugsample'
 include ':netease'
 include ':second'
 include ':customviewsample'
