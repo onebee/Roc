@@ -1,5 +1,6 @@
 package com.one.screenadapter;
 
+import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.DisplayCutout;
@@ -44,8 +45,13 @@ public class MainActivity extends BaseActivity {
 
         setContentView(R.layout.activity_main);
 
+
+        System.out.println("MainActivity 加载 " + this.getClassLoader());
+//        System.out.println(this.getClassLoader());
+        System.out.println("Activity  加载 " + Activity.class.getClassLoader());
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private boolean hasDisplayCutout(Window window) {
         DisplayCutout displayCutout;
         View rootView = window.getDecorView();

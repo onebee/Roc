@@ -7,14 +7,22 @@
     tools:context=".MainActivity">
 
 
-    <com.one.second.drag.DragListenerGlideView
+<!--    <com.one.second.drag.DragListenerGlideView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+
+
+
+
+<!--    </com.one.second.drag.DragListenerGlideView>-->
+
+
+    <com.one.second.poc.HealthTextView
+        android:text="asfdsadsaf汉得心率 体脂 20%  bmtp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-
-
-    </com.one.second.drag.DragListenerGlideView>
-
-
+        android:layout_height="300dp"
+        android:textSize="35sp"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -57,11 +57,16 @@ class RetrofitActivity : AppCompatActivity() {
 
         val listReposRx = service.listReposRx("onebee")
         listReposRx.subscribeOn(Schedulers.io())
-                .subscribe {
+                .subscribe(
+                        {
+
+                        },
+                        {
+
+                        }
+                )
 
 
-
-                }
     }
 }
 

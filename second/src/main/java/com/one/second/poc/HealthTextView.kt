@@ -47,7 +47,7 @@ class HealthTextView(context: Context, attrs: AttributeSet) : AppCompatTextView(
 
 
         var startX = 0f
-        var lastChar = '1'
+        var lastChar ='1'
         text.forEach {
 
           paintEn.textSize =   textSize
