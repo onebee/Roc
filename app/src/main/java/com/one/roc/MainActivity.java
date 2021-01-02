@@ -11,6 +11,9 @@ import com.one.librview.annotation.ContentView;
 import com.one.librview.annotation.OnClick;
 import com.one.roc.ioc1.BaseActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @ContentView(R.layout.activity_main)
 public class MainActivity extends BaseActivity {
 
@@ -38,6 +41,8 @@ public class MainActivity extends BaseActivity {
 //            }
 //        });
 
+
+        List<String> list= new ArrayList<String>();
 
     }
 
