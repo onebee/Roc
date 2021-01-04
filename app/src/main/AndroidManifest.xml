@@ -13,9 +13,9 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 
     <uses-permission-sdk-23 android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
     <application
@@ -26,20 +26,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".plug.PlugcAtivity">
+        <activity android:name=".hotfix.HotFixAtivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".okhttp.OkhttpActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".plug.PlugcAtivity"/>
+        <activity android:name=".okhttp.OkhttpActivity"/>
         <activity android:name=".interrupt.CancelEventActivity" />
         <activity android:name=".interrupt.InterceptActivity" />
         <activity android:name=".ioc1.RViewActivity" />
